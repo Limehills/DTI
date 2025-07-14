@@ -15,12 +15,12 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect('dashboard');
+        if (Auth::attempt(['email' => $request->username, 'password' => $request->password])) {
+            return redirect('/home');
         }
 
         return redirect()->to('/login')->withErrors([
